@@ -135,6 +135,11 @@ function getLearnerData(course, ag, submissions) {
               assignment = ag.assignments[k];
             }
           }
+          let dueDate = new Date(assignment.due_at);
+          let today = new Date();
+          if (dueDate > today){
+            continue;
+          }
           // let result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
           learnerResult[currentAssignment] = 0;
         }
