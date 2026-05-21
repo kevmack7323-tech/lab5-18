@@ -32,15 +32,7 @@ const AssignmentGroup = {
     }
   ]
 };
-
-
-console.log(AssignmentGroup.assignments[0])
-
-
-
-
-
-
+;
 
 
 // The provided learner submission data.
@@ -87,92 +79,68 @@ const LearnerSubmissions = [
   }
 ];
 
-// console.log(LearnerSubmissions[0], LearnerSubmissions[3])
-
-// let assignmentOneSub = (LearnerSubmissions[0], LearnerSubmissions[3] + AssignmentGroup.assignments[0])
-// console.log(assignmentOneSub)
-
-for (let i = 0; i<AssignmentGroup.assignments.length; i++){
-    
+function pointsPossible(agArray, assignment_id) {
+  for (let j = 0; j < agArray.length; j++) {
+    if (agArray[j].id == assignment_id) {
+      return agArray[j].points_possible
+      break;
+    }
+  }
 }
 
 
 
 
 
+function getLearnerData(course, ag, submissions) {
+  // here, we would process this data to achieve the desired result.
+  //   const result = [
+  //     {
+  //       id: 125,
+  //       avg: 0.985, // (47 + 150) / (50 + 150)
+  //       1: 0.94, // 47 / 50
+  //       2: 1.0 // 150 / 150
+  //     },
+  //     {
+  //       id: 132,
+  //       avg: 0.82, // (39 + 125) / (50 + 150)
+  //       1: 0.78, // 39 / 50
+  //       2: 0.833 // late: (140 - 15) / 150
+  //     }
+  //   ];
 
-// function getLearnerData(course, ag, submissions) {
-//   // here, we would process this data to achieve the desired result.
-//   const result = [
-//     {
-//       id: 125,
-//       avg: 0.985, // (47 + 150) / (50 + 150)
-//       1: 0.94, // 47 / 50
-//       2: 1.0 // 150 / 150
-//     },
-//     {
-//       id: 132,
-//       avg: 0.82, // (39 + 125) / (50 + 150)
-//       1: 0.78, // 39 / 50
-//       2: 0.833 // late: (140 - 15) / 150
-//     }
-//   ];
+  const ids = []
+  let result = [];
+    try{
+      if (ag.course_id !== course.id) {
+        throw "Course Unavailable for Review"
+      }
+  let sub = LearnerSubmissions.submissions;
 
-//   return result;
-// }
+      for (let sub of submissions) {
+        if (ids.indexOf(sub.learner_id) === -1) {
+          ids.push(sub.learner_id);
+        }
+      }
+      for (let learner_id of ids) {
+        let learnerResult = {
+          id: learner_id
+        };
+      }
+      // console.log(ids)
+      //   return result;
+      // };
 
-// const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-
-// console.log(result);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      for (let i = 0; i < LearnerSubmissions.length; i++) {
+        if (learner_id === submissions[i].learner_id) {
+          console.log("submission score: " + score);
+          LearnerSubmissions.score += LearnerSubmissions.submissions[i].submission.score
+        }
+      }
+    
+      // let result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+      return result; 
+    }
+      catch (err) {
+        console.log(err);
+    }
