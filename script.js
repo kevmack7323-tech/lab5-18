@@ -120,18 +120,15 @@ function getLearnerData(course, ag, submissions) {
     for (let sub of submissions) {
       if (ids.indexOf(sub.learner_id) === -1) {
         ids.push(sub.learner_id);
-
+        }
       }
       for (let learner_id of ids) {
-        let learnerResult = {
-          id: learner_id
-        };
+        let learnerResult = {id: learner_id };
         let totalPointsEarned = 0;
         let totalPointsPossible = 0;
 
         for (let i = 0; i < submissions.length; i++) {
           if (learner_id === submissions[i].learner_id) {
-            console.log("submission score: " + score);
             let currentAssignment = submissions[i].assignments_id;
             let maxPoints = pointsPossible(ag.assignments, currentAssignment);
             let assignment;
