@@ -127,7 +127,7 @@ function getLearnerData(course, ag, submissions) {
 
       for (let i = 0; i < submissions.length; i++) {
         if (learner_id === submissions[i].learner_id) {
-          let currentAssignment = submissions[i].assignments_id;
+          let currentAssignment = submissions[i].assignment_id;
           let maxPoints = pointsPossible(ag.assignments, currentAssignment);
           let assignment;
           for (let k = 0; k < ag.assignments.length; k++) {
