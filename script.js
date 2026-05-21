@@ -99,7 +99,7 @@ function getLearnerData(course, ag, submissions) {
   //       id: 125,
   //       avg: 0.985, // (47 + 150) / (50 + 150)
   //       1: 0.94, // 47 / 50
-  //       2: 1.0 // 150 / 150
+  //       2: 1.0 // 150 / 1  50
   //     },
   //     {
   //       id: 132,
@@ -120,23 +120,24 @@ function getLearnerData(course, ag, submissions) {
       for (let sub of submissions) {
         if (ids.indexOf(sub.learner_id) === -1) {
           ids.push(sub.learner_id);
-        }
+
       }
       for (let learner_id of ids) {
         let learnerResult = {
           id: learner_id
         };
+        let totalPointsEarned = 0;
+        let totalPointsPossible = 0;
       }
-      // console.log(ids)
-      //   return result;
-      // };
 
-      for (let i = 0; i < LearnerSubmissions.length; i++) {
+      for (let i = 0; i < submissions.length; i++) {
         if (learner_id === submissions[i].learner_id) {
           console.log("submission score: " + score);
-          LearnerSubmissions.score += LearnerSubmissions.submissions[i].submission.score
+          let currentAssignment = submissions[i].assignments_id;
+          let maxPoints = pointsPossible(ag.assignments, currentAssignmentId);
         }
       }
+    }
     
       // let result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
       return result; 
