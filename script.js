@@ -115,40 +115,35 @@ function getLearnerData(course, ag, submissions) {
     if (ag.course_id !== course.id) {
       throw "Course Unavailable for Review"
     }
-    let sub = LearnerSubmissions.submissions;
-
     for (let sub of submissions) {
       if (ids.indexOf(sub.learner_id) === -1) {
         ids.push(sub.learner_id);
-        }
       }
-      for (let learner_id of ids) {
-        let learnerResult = {id: learner_id };
-        let totalPointsEarned = 0;
-        let totalPointsPossible = 0;
+    }
+    for (let learner_id of ids) {
+      let learnerResult = { id: learner_id };
+      let totalPointsEarned = 0;
+      let totalPointsPossible = 0;
 
-        for (let i = 0; i < submissions.length; i++) {
-          if (learner_id === submissions[i].learner_id) {
-            let currentAssignment = submissions[i].assignments_id;
-            let maxPoints = pointsPossible(ag.assignments, currentAssignment);
-            let assignment;
-            for (let k = 0; k < ag.assignments.length; k++) {
-              if (ag.assignments[k].id === currentAssignment) {
-                assignment = ag.assignments[k]:
-              }
+      for (let i = 0; i < submissions.length; i++) {
+        if (learner_id === submissions[i].learner_id) {
+          let currentAssignment = submissions[i].assignments_id;
+          let maxPoints = pointsPossible(ag.assignments, currentAssignment);
+          let assignment;
+          for (let k = 0; k < ag.assignments.length; k++) {
+            if (ag.assignments[k].id === currentAssignment) {
+              assignment = ag.assignments[k];
             }
-
           }
+          // let result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+          learnerResult[currentAssignment] = 0;
         }
-        let assignment;
-        for (let k = 0; k < ag.assignments.length; k++) {
-          if (ag.assignments[k].id === currentAssignment) {
-            assignment = ag.assignments[k];
-          }
-        }
-        // let result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
-        return result;
       }
-  catch (err) {
-        console.log(err);
-      }
+      result.push(learnerResult);
+    }
+    return result;
+ 
+  } catch (err) {
+    console.log(err);
+  }
+}
